@@ -1,0 +1,63 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/backend
+    username: root
+    password: 43381563Zhn
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+jwt:
+  public:
+    key:
+      -----BEGIN PUBLIC KEY-----
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxMshAjqw/f3UqMBX0UZH
+      0/NxYVQuu1bq69OJf7pcAzObc/1Srne4oChia+G53lij/746W7uZgAf56izkv3M1
+      gXAG4LWKrFNafTL+oHiKWl21Ymq2ooVlDXUq9hyC3YE00/s7/+rt0/WG4WirDnb2
+      TrB+1mocXk3MWxII/L0kiFwd5F7ALiAVWuxKxheD2FVA1FTbxuzIcmtZYCSWnfLN
+      i73HeRieFAzZUARJtgOap+5Q3B4bS3t7oEXte/kyTZYse+lenOEpg2QNTGYQ/xY6
+      pmXJIq7fUkem+WNgOtgFocwkBYAwb6i3neu5pWZlIquc593mnbZVpAHScmygUpmW
+      HwIDAQAB
+      -----END PUBLIC KEY-----
+
+
+  private:
+    key:
+      -----BEGIN PRIVATE KEY-----
+      MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDEyyECOrD9/dSo
+      wFfRRkfT83FhVC67Vurr04l/ulwDM5tz/VKud7igKGJr4bneWKP/vjpbu5mAB/nq
+      LOS/czWBcAbgtYqsU1p9Mv6geIpaXbViaraihWUNdSr2HILdgTTT+zv/6u3T9Ybh
+      aKsOdvZOsH7WahxeTcxbEgj8vSSIXB3kXsAuIBVa7ErGF4PYVUDUVNvG7Mhya1lg
+      JJad8s2Lvcd5GJ4UDNlQBEm2A5qn7lDcHhtLe3ugRe17+TJNlix76V6c4SmDZA1M
+      ZhD/FjqmZckirt9SR6b5Y2A62AWhzCQFgDBvqLed67mlZmUiq5zn3eadtlWkAdJy
+      bKBSmZYfAgMBAAECggEAE4DKGa11Ywan7714No5PigrjXrD4HKrlh0+kndr7SXnw
+      2xLtActtqbm231g0knuYbT0ODY9PDCg+NV4ToYGqeNSAaf6z6pYsLqJCJ+cqVwBY
+      fJN03DB6LlZBVrjGo2stsCCC9r7yqQH5RxeXdEyH5o6JU3iarSHqsc/cwieAml7S
+      NgodUuLm3wt1KyTg0j5WnVCKDDo1gfhpKpU4weY589MhzPHDtpuT+nk3hiv4gWRJ
+      BQo21EX+kb2rzce/nqS0nHpnGmdp3YQ/GifXHUfE85gymzHO+mhKU8/mRqgArKUC
+      lTC5/SQfg2wbFxwJV8W6LnbsT7flmdGBvmp6QGJmAQKBgQDpL+ZAKmSo7Ew9RSnD
+      9PMW7WIS4Gpn6pG8R3Ljf6XmOhtgcvue7VJYIiWNoo5Zi89uulglbglDsySAh5nu
+      ARRSomMXIkjZ8xeWyfwyP6L7kdi5KtQ5d0bWSuOaPwiGqjI7JSIbM1kbVvpQpySy
+      LeMxYJzH8rRQt7Gin7PtHimDAQKBgQDYC8MPDSS13T/9ejnwo8Lu1TSiAdBPkz6C
+      sE7ffqupthmHdZiJXWK0VnWxp7euZKcBnJS8f0BdYYNt1+SNZerDdGy3JiXW1qZi
+      J80HBnDpatMOLdYRpZXafe5UK7plXIQQmUpKIrntGHzhHxWTbohpeKCXcxHkD/Cp
+      ihxGdue5HwKBgHfO7HY7UcyY2/L+/h54VA2LmcApHYKWupoJ+7V3eD15zWcYrL9T
+      H+O4Z6MFyi2n78Psai2RA6GNAUwoX6YxV8e9NzxDmTqh85S94p3OpGas4LUClFeS
+      OQsRHy+5AyBtgbFxurxO/ZFWdvXJaslBWmGcSfFReeOe/d2YQFGsFZgBAoGAf+f2
+      w6J0aXdjux3xz5YkgmGXl5KbUYFLMPRQveCwoPk+hAQLGsg+96V4aIVzKbxNY5bg
+      N/jekmp49T8sAMqmArGa65OaM2dBejs2F0Ko9ohYC7z3T9tIrOKBhzOcVwY+6dTX
+      Nqz4hnZI+L7+dxqpiEfyS7fEj9EgGj+6Hb2n0uECgYAq/Dju1up94M+kPEFBSrug
+      dqmev7Vtx4W9n1kAJ1DkbE1dH9sC0WIE7b20STWtE4miSxCxkq35pIVaj8mNTlel
+      BVi0yZNfkTLChz1K9sp8qKg0Kj2B25AohiDRbzY3AuZPdUaVup0hCuJbRbFhjFn1
+      EwMjUlxIUfgJSA4YGP/cdw==
+      -----END PRIVATE KEY-----
+
+
+  expiration: 604800
+
+logging:
+  level:
+    com:
+      example:
+        demo=DEBUG:
