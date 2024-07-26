@@ -27,7 +27,7 @@ public class JwtTokenUtil {
         try {
             String privateKeyPEM = privateKey.replace("-----BEGIN PRIVATE KEY-----", "")
                     .replace("-----END PRIVATE KEY-----", "")
-                    .replaceAll("\\s+", ""); // 去除所有空格和换行符
+                    .replaceAll("\\s+", ""); // 去除空格和换行符
 
             byte[] encoded = Base64.getDecoder().decode(privateKeyPEM);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
@@ -42,8 +42,8 @@ public class JwtTokenUtil {
         try {
             Map<String, Object> claims = new HashMap<>();
             claims.put("username", user.getUsername());
-            claims.put("gender", user.getGender()); // Include gender in the claims
-            claims.put("age", user.getAge());       // Include age in the claims
+            claims.put("gender", user.getGender());
+            claims.put("age", user.getAge());
 
             return Jwts.builder()
                     .setClaims(claims)

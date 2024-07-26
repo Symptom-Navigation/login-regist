@@ -19,7 +19,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // 从数据库中查找用户
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
-        // 返回用户信息
         return user;
     }
 }

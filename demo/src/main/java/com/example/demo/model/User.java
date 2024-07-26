@@ -15,10 +15,9 @@ public class User implements UserDetails {
 
     private String username;
     private String password;
-    private String gender; // 新增字段
-    private Integer age;   // 新增字段
+    private String gender;
+    private Integer age;
 
-    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -62,7 +61,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList(); // Return the authorities for the user
+        return Collections.emptyList();
     }
 
     @Override
