@@ -1,59 +1,60 @@
 package com.example.demo.security;
 
-import com.example.demo.model.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.security.KeyFactory;
-import java.security.PrivateKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.util.Base64;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.function.Function;
 
 @Component
 public class JwtTokenUtil {
 
     @Value("${jwt.private.key}")
-    private String privateKey;
+    private String secret;
 
     @Value("${jwt.expiration}")
-    private long expiration;
+    private Long expiration;
 
-    public PrivateKey getPrivateKey() {
-        try {
-            String privateKeyPEM = privateKey.replace("-----BEGIN PRIVATE KEY-----", "")
-                    .replace("-----END PRIVATE KEY-----", "")
-                    .replaceAll("\\s+", ""); // 去除空格和换行符
-
-            byte[] encoded = Base64.getDecoder().decode(privateKeyPEM);
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encoded);
-            return keyFactory.generatePrivate(keySpec);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to get private key", e);
-        }
+    public String generateToken(UserDetails userDetails) {
+        return Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
     }
 
-    public String generateToken(User user) {
-        try {
-            Map<String, Object> claims = new HashMap<>();
-            claims.put("username", user.getUsername());
-            claims.put("gender", user.getGender());
-            claims.put("age", user.getAge());
+    public String getUsernameFromToken(String token) {
+        return getClaimFromToken(token, Claims::getSubject);
+    }
 
-            return Jwts.builder()
-                    .setClaims(claims)
-                    .setSubject(user.getUsername())
-                    .setIssuedAt(new Date(System.currentTimeMillis()))
-                    .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
-                    .signWith(SignatureAlgorithm.RS256, getPrivateKey())
-                    .compact();
-        } catch (Exception e) {
-            throw new RuntimeException("JWT generation failed", e);
-        }
+    public Date getExpirationDateFromToken(String token) {
+        return getClaimFromToken(token, Claims::getExpiration);
+    }
+
+    public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = getAllClaimsFromToken(token);
+        return claimsResolver.apply(claims);
+    }
+
+    private Claims getAllClaimsFromToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    private Boolean isTokenExpired(String token) {
+        final Date expiration = getExpirationDateFromToken(token);
+        return expiration.before(new Date());
+    }
+
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        final String username = getUsernameFromToken(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }

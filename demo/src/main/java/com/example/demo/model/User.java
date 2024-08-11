@@ -1,23 +1,20 @@
 package com.example.demo.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
+import java.sql.Timestamp;
 
 @Entity
-public class User implements UserDetails {
+@Table(name = "Users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
     private String password;
     private String gender;
     private Integer age;
-
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
     public Long getId() {
         return id;
@@ -59,28 +56,19 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

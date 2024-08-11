@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/backend
+    url: jdbc:mysql://localhost:3306/medicalapp
     username: root
     password: 43381563Zhn
   jpa:
