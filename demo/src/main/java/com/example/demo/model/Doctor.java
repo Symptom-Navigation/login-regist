@@ -10,13 +10,14 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String doctorname;
     private String department;
     private String title;
     private String username;
     private String password;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private byte[] avatar;
 
     public Long getId() {
         return id;
@@ -27,11 +28,11 @@ public class Doctor {
     }
 
     public String getName() {
-        return name;
+        return doctorname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDoctorName(String name) {
+        this.doctorname = name;
     }
 
     public String getDepartment() {
@@ -80,5 +81,13 @@ public class Doctor {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
     }
 }

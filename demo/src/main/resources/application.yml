@@ -1,27 +1,17 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/medicalapp
+    url: jdbc:mysql://127.0.0.1:3306/medicalapp
     username: root
     password: 43381563Zhn
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
 
 jwt:
-  public:
-    key:
-      -----BEGIN PUBLIC KEY-----
-      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxMshAjqw/f3UqMBX0UZH
-      0/NxYVQuu1bq69OJf7pcAzObc/1Srne4oChia+G53lij/746W7uZgAf56izkv3M1
-      gXAG4LWKrFNafTL+oHiKWl21Ymq2ooVlDXUq9hyC3YE00/s7/+rt0/WG4WirDnb2
-      TrB+1mocXk3MWxII/L0kiFwd5F7ALiAVWuxKxheD2FVA1FTbxuzIcmtZYCSWnfLN
-      i73HeRieFAzZUARJtgOap+5Q3B4bS3t7oEXte/kyTZYse+lenOEpg2QNTGYQ/xY6
-      pmXJIq7fUkem+WNgOtgFocwkBYAwb6i3neu5pWZlIquc593mnbZVpAHScmygUpmW
-      HwIDAQAB
-      -----END PUBLIC KEY-----
-
-
   private:
     key:
       -----BEGIN PRIVATE KEY-----
@@ -53,11 +43,21 @@ jwt:
       EwMjUlxIUfgJSA4YGP/cdw==
       -----END PRIVATE KEY-----
 
+  public:
+    key:
+      -----BEGIN PUBLIC KEY-----
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxMshAjqw/f3UqMBX0UZH
+      0/NxYVQuu1bq69OJf7pcAzObc/1Srne4oChia+G53lij/746W7uZgAf56izkv3M1
+      gXAG4LWKrFNafTL+oHiKWl21Ymq2ooVlDXUq9hyC3YE00/s7/+rt0/WG4WirDnb2
+      TrB+1mocXk3MWxII/L0kiFwd5F7ALiAVWuxKxheD2FVA1FTbxuzIcmtZYCSWnfLN
+      i73HeRieFAzZUARJtgOap+5Q3B4bS3t7oEXte/kyTZYse+lenOEpg2QNTGYQ/xY6
+      pmXJIq7fUkem+WNgOtgFocwkBYAwb6i3neu5pWZlIquc593mnbZVpAHScmygUpmW
+      HwIDAQAB
+      -----END PUBLIC KEY-----
 
-  expiration: 604800
+  expiration: 604800000
 
 logging:
   level:
-    com:
-      example:
-        demo=DEBUG:
+    org.springframework.jdbc: DEBUG
+    org.hibernate: DEBUG

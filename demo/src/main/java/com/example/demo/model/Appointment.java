@@ -16,12 +16,20 @@ public class Appointment {
     private String status;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-
-
+    @Column(name = "description", length = 255)
+    private String description;
+    @Lob
+    @Column(name = "image1")
+    private byte[] image1;
+    @Lob
+    @Column(name = "image2")
+    private byte[] image2;
+    @Lob
+    @Column(name = "image3")
+    private byte[] image3;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
     private Doctor doctor;
@@ -88,5 +96,37 @@ public class Appointment {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public byte[] getImage1() {
+        return image1;
+    }
+
+    public void setImage1(byte[] image1) {
+        this.image1 = image1;
+    }
+
+    public byte[] getImage2() {
+        return image2;
+    }
+
+    public void setImage2(byte[] image2) {
+        this.image2 = image2;
+    }
+
+    public byte[] getImage3() {
+        return image3;
+    }
+
+    public void setImage3(byte[] image3) {
+        this.image3 = image3;
     }
 }

@@ -15,6 +15,12 @@ public class User {
     private Integer age;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private byte[] avatar;
+    @Column(name = "id_card_number", nullable = false, length = 18)
+    private String idCardNumber;
+    @Column(name = "phone_number", length = 11, nullable = false)
+    private String phoneNumber;
+
 
     public Long getId() {
         return id;
@@ -70,5 +76,29 @@ public class User {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getIdCardNumber() {
+        return idCardNumber;
+    }
+
+    public void setIdCardNumber(String idCardNumber) {
+        this.idCardNumber = idCardNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

@@ -21,15 +21,32 @@ public class AppointmentService {
         return appointmentRepository.findByDoctorId(doctorId);
     }
 
-    public void acceptAppointment(Long appointmentId, Long doctorId) {
+    public void acceptAppointment(Long appointmentId, Long doctorId) throws RuntimeException {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found"));
         if (!appointment.getDoctor().getId().equals(doctorId)) {
             throw new RuntimeException("Doctor ID does not match the appointment's doctor");
         }
+        if (appointment.getStatus().equals("Accepted")) {
+            throw new RuntimeException("Appointment is already Accepted");
+        }
         appointment.setStatus("Accepted");
         appointmentRepository.save(appointment);
     }
+
+    public void cancelAppointment(Long appointmentId, Long doctorId) throws RuntimeException {
+        Appointment appointment = appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+        if (!appointment.getDoctor().getId().equals(doctorId)) {
+            throw new RuntimeException("Doctor ID does not match the appointment's doctor");
+        }
+        if (appointment.getStatus().equals("Pending")) {
+            throw new RuntimeException("Appointment's status is Pending");
+        }
+        appointment.setStatus("Pending");
+        appointmentRepository.save(appointment);
+    }
+
 
     public Optional<Appointment> findById(Long appointmentId) {
         return appointmentRepository.findById(appointmentId);
@@ -41,4 +58,5 @@ public class AppointmentService {
     public void save(Appointment appointment) {
         appointmentRepository.save(appointment);
     }
+
 }
