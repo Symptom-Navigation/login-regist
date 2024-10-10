@@ -26,9 +26,11 @@ public class DoctorService implements UserDetailsService {
         }
         return new org.springframework.security.core.userdetails.User(doctor.get().getUsername(), doctor.get().getPassword(), new ArrayList<>());
     }
+
     public Optional<Doctor> findById(Long id) {
         return doctorRepository.findById(id);
     }
+
     public Optional<Doctor> findByUsername(String username) {
         return doctorRepository.findByUsername(username);
     }
@@ -40,9 +42,13 @@ public class DoctorService implements UserDetailsService {
     public void save(Doctor doctor) {
         doctorRepository.save(doctor);
     }
+
     public List<Doctor> findAllDoctors() {
         return doctorRepository.findAll();
     }
 
+    public List<Doctor> findAll() {
+        return doctorRepository.findAll();
+    }
 
 }

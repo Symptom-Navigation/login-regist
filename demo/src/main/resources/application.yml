@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/medicalapp
+    url: jdbc:mysql://localhost:3306/medicalapp
     username: root
-    password: 43381563Zhn
+    password: 123456789
   jpa:
     hibernate:
       ddl-auto: update
